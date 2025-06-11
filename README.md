@@ -1,5 +1,5 @@
 # Pests_and_diseases_in_UK_treescapes
-Code to reproduce the analyses in the manuscript Patterns and drivers of pest and disease occurrence in UK treescapes.
+Code to reproduce the analyses in the manuscript _Patterns and drivers of pest and disease occurrence in UK treescapes._
 
 ## Description of files
 - **APHA_format.R**: Clean and format the APHA dataset and save as Rdata file.
