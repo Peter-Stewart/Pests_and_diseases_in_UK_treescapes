@@ -581,7 +581,7 @@ for(m in 1:length(effect_list)){
   if(m %in% c(1,4,7)){
     axis(side = 2, 
          at = seq(nrow(mat),1,-1),
-         labels = species_labels,
+         labels = parse(text = paste0("italic('", species_labels, "')")),
          tick = TRUE,
          las = 2,
          cex.axis = 1)
@@ -818,7 +818,7 @@ for(m in 1:length(effect_list)){
   if(m %in% c(1,4,7)){
     axis(side = 2, 
          at = seq(nrow(mat),1,-1),
-         labels = species_labels,
+         labels = parse(text = paste0("italic('", species_labels, "')")),
          tick = TRUE,
          las = 2,
          cex.axis = 1)
