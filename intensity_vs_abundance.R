@@ -79,23 +79,23 @@ host_abundance <- mask(host_abundance,
 host_abundance_proj <- project(host_abundance, pred.df5)
 
 predictions_list$`Acer pseudoplatanus`$abundance <- 
-  eval_spatial(host_abundance_proj,
+  eval_spatial(host_abundance_proj$ApsAbundance,
                predictions_list$`Acer pseudoplatanus`$geometry)
 
 predictions_list$`Betula pendula`$abundance <- 
-  eval_spatial(host_abundance_proj,
+  eval_spatial(host_abundance_proj$BpeAbundance,
                predictions_list$`Betula pendula`$geometry)
 
 predictions_list$`Fagus sylvatica`$abundance <- 
-  eval_spatial(host_abundance_proj,
+  eval_spatial(host_abundance_proj$FsyAbundance,
                predictions_list$`Fagus sylvatica`$geometry)
 
 predictions_list$`Fraxinus excelsior`$abundance <- 
-  eval_spatial(host_abundance_proj,
+  eval_spatial(host_abundance_proj$FexAbundance,
                predictions_list$`Fraxinus excelsior`$geometry)
 
 predictions_list$`Quercus robur`$abundance <- 
-  eval_spatial(host_abundance_proj,
+  eval_spatial(host_abundance_proj$QroAbundance,
                predictions_list$`Quercus robur`$geometry)
 
 
@@ -128,16 +128,16 @@ for(i in 1:length(sp_to_plot)){
   p_temp <- ggplot() +
     gg(tmpdf, geom = "tile") +
     geom_sf(data = GB_bound, fill = NA, lwd = 0.8, col = "black") +
-   
+    
     #ggtitle(paste(sp_to_plot[i])) +
-
+    
     xlab("") + ylab("") +
     theme(legend.position = "none") +
     
     scale_fill_gradientn(colors = colpal, 
                          #values = scales::rescale(breaks),
                          limits = range(breaks))
-    
+  
   p_list[[i]] <- p_temp
   
 }
