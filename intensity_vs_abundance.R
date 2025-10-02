@@ -43,19 +43,13 @@ species_NFES <- c("Sycamore",
 setwd("C:/temp/pests_analysis/INLA_inputs")
 GB_bound <- get(load("gb_mainland_boundary.Rdata"))
 meshGB5 <- get(load("meshGB5.Rdata"))
-covariate_stack <- rast("covariate_stack.tif")
-correct <- covariate_stack$broadleaf_area_Ha
-covariate_stack[is.na(covariate_stack)] <- 0
-covariate_stack <- mask(covariate_stack, 
-                        correct,
-                        maskvalues = NA,
-                        updatevalue = NA)
 
 dm <- c(106,194)
 pred.df5 <- fm_pixels(meshGB5, 
                       dims = dm,
                       format = "terra",
                       mask = GB_bound)
+
 # Process NFES data ####
 NFES_sub <- NFES %>% filter(PRISPECIES %in% species_NFES |
                               SECSPECIES %in% species_NFES |
@@ -163,7 +157,7 @@ for(sp in 1:length(species)){
   writeRaster(r, filename = paste0(species[sp], "_NFES_cover.tif"))
 }
 
-# Load cover rasters ####
+# Load cover rasters (generated using above code) ####
 setwd("C:/temp/pests_analysis/National_Forest_Estate_Subcompartments_GB_2016")
 file_list <- list.files(pattern = ".tif")
 NFES_cover <- rast(file_list)
@@ -191,7 +185,7 @@ predictions_list <- predictions_list[-10]
 names(predictions_list) <- species
 
 
-
+# Extract host species cover for each prediction location ####
 predictions_list$`Acer pseudoplatanus`$abundance <- 
   eval_spatial(NFES_cover$`Acer pseudoplatanus`,
                predictions_list$`Acer pseudoplatanus`$geometry)
