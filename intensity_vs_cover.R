@@ -314,9 +314,3 @@ ggsave2(filename = "intensity_vs_cover_NFES.tiff",
         height = 110,
         units = "mm",
         scale = 1.7)
-
-
-
-
-
-
