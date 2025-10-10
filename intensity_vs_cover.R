@@ -186,39 +186,39 @@ names(predictions_list) <- species
 
 
 # Extract host species cover for each prediction location ####
-predictions_list$`Acer pseudoplatanus`$abundance <- 
+predictions_list$`Acer pseudoplatanus`$cover <- 
   eval_spatial(NFES_cover$`Acer pseudoplatanus`,
                predictions_list$`Acer pseudoplatanus`$geometry)
 
-predictions_list$`Betula pendula`$abundance <- 
+predictions_list$`Betula pendula`$cover <- 
   eval_spatial(NFES_cover$`Betula pendula`,
                predictions_list$`Betula pendula`$geometry)
 
-predictions_list$`Fagus sylvatica`$abundance <- 
+predictions_list$`Fagus sylvatica`$cover <- 
   eval_spatial(NFES_cover$`Fagus sylvatica`,
                predictions_list$`Fagus sylvatica`$geometry)
 
-predictions_list$`Fraxinus excelsior`$abundance <- 
+predictions_list$`Fraxinus excelsior`$cover <- 
   eval_spatial(NFES_cover$`Fraxinus excelsior`,
                predictions_list$`Fraxinus excelsior`$geometry)
 
-predictions_list$`Picea abies`$abundance <-
+predictions_list$`Picea abies`$cover <-
   eval_spatial(NFES_cover$`Picea abies`,
               predictions_list$`Picea abies`$geometry)
 
-predictions_list$`Picea sitchensis`$abundance <-
+predictions_list$`Picea sitchensis`$cover <-
   eval_spatial(NFES_cover$`Picea sitchensis`,
                predictions_list$`Picea sitchensis`$geometry)
 
-predictions_list$`Pinus sylvestris`$abundance <- 
+predictions_list$`Pinus sylvestris`$cover <- 
   eval_spatial(NFES_cover$`Pinus sylvestris`,
                predictions_list$`Pinus sylvestris`$geometry)
 
-predictions_list$`Quercus robur`$abundance <- 
+predictions_list$`Quercus robur`$cover <- 
   eval_spatial(NFES_cover$`Quercus robur`,
                predictions_list$`Quercus robur`$geometry)
 
-predictions_list$`Sorbus aucuparia`$abundance <- 
+predictions_list$`Sorbus aucuparia`$cover <- 
   eval_spatial(NFES_cover$`Sorbus aucuparia`,
                predictions_list$`Sorbus aucuparia`$geometry)
 
@@ -228,28 +228,28 @@ for(i in 1:length(species)){
 }
 
 
-# Remove cells with NA abundance ####
-predictions_list$`Acer pseudoplatanus` <- predictions_list$`Acer pseudoplatanus` %>% filter(!is.na(abundance))
-predictions_list$`Betula pendula` <- predictions_list$`Betula pendula` %>% filter(!is.na(abundance))
-predictions_list$`Fagus sylvatica` <- predictions_list$`Fagus sylvatica` %>% filter(!is.na(abundance))
-predictions_list$`Fraxinus excelsior` <- predictions_list$`Fraxinus excelsior` %>% filter(!is.na(abundance))
-predictions_list$`Picea abies` <- predictions_list$`Picea abies` %>% filter(!is.na(abundance))
-predictions_list$`Picea sitchensis` <- predictions_list$`Picea sitchensis` %>% filter(!is.na(abundance))
-predictions_list$`Pinus sylvestris` <- predictions_list$`Pinus sylvestris` %>% filter(!is.na(abundance))
-predictions_list$`Quercus robur` <- predictions_list$`Quercus robur` %>% filter(!is.na(abundance))
-predictions_list$`Sorbus aucuparia` <- predictions_list$`Sorbus aucuparia` %>% filter(!is.na(abundance))
+# Remove cells with NA cover ####
+predictions_list$`Acer pseudoplatanus` <- predictions_list$`Acer pseudoplatanus` %>% filter(!is.na(cover))
+predictions_list$`Betula pendula` <- predictions_list$`Betula pendula` %>% filter(!is.na(cover))
+predictions_list$`Fagus sylvatica` <- predictions_list$`Fagus sylvatica` %>% filter(!is.na(cover))
+predictions_list$`Fraxinus excelsior` <- predictions_list$`Fraxinus excelsior` %>% filter(!is.na(cover))
+predictions_list$`Picea abies` <- predictions_list$`Picea abies` %>% filter(!is.na(cover))
+predictions_list$`Picea sitchensis` <- predictions_list$`Picea sitchensis` %>% filter(!is.na(cover))
+predictions_list$`Pinus sylvestris` <- predictions_list$`Pinus sylvestris` %>% filter(!is.na(cover))
+predictions_list$`Quercus robur` <- predictions_list$`Quercus robur` %>% filter(!is.na(cover))
+predictions_list$`Sorbus aucuparia` <- predictions_list$`Sorbus aucuparia` %>% filter(!is.na(cover))
 
 
-# Use robust regression to predict P+D intensity from abundance, then take residuals ####
-predictions_list$`Acer pseudoplatanus`$resid <- resid(rlm(mean ~ abundance, data = predictions_list$`Acer pseudoplatanus`))
-predictions_list$`Betula pendula`$resid <- resid(rlm(mean ~ abundance, data = predictions_list$`Betula pendula`))
-predictions_list$`Fagus sylvatica`$resid <- resid(rlm(mean ~ abundance, data = predictions_list$`Fagus sylvatica`))
-predictions_list$`Fraxinus excelsior`$resid <- resid(rlm(mean ~ abundance, data = predictions_list$`Fraxinus excelsior`))
-predictions_list$`Picea abies`$resid <- resid(rlm(mean ~ abundance, data = predictions_list$`Picea abies`))
-predictions_list$`Picea sitchensis`$resid <- resid(rlm(mean ~ abundance, data = predictions_list$`Picea sitchensis`))
-predictions_list$`Pinus sylvestris`$resid <- resid(rlm(mean ~ abundance, data = predictions_list$`Pinus sylvestris`))
-predictions_list$`Quercus robur`$resid <- resid(rlm(mean ~ abundance, data = predictions_list$`Quercus robur`))
-predictions_list$`Sorbus aucuparia`$resid <- resid(rlm(mean ~ abundance, data = predictions_list$`Sorbus aucuparia`))
+# Use robust regression to predict P+D intensity from cover, then take residuals ####
+predictions_list$`Acer pseudoplatanus`$resid <- resid(rlm(mean ~ cover, data = predictions_list$`Acer pseudoplatanus`))
+predictions_list$`Betula pendula`$resid <- resid(rlm(mean ~ cover, data = predictions_list$`Betula pendula`))
+predictions_list$`Fagus sylvatica`$resid <- resid(rlm(mean ~ cover, data = predictions_list$`Fagus sylvatica`))
+predictions_list$`Fraxinus excelsior`$resid <- resid(rlm(mean ~ cover, data = predictions_list$`Fraxinus excelsior`))
+predictions_list$`Picea abies`$resid <- resid(rlm(mean ~ cover, data = predictions_list$`Picea abies`))
+predictions_list$`Picea sitchensis`$resid <- resid(rlm(mean ~ cover, data = predictions_list$`Picea sitchensis`))
+predictions_list$`Pinus sylvestris`$resid <- resid(rlm(mean ~ cover, data = predictions_list$`Pinus sylvestris`))
+predictions_list$`Quercus robur`$resid <- resid(rlm(mean ~ cover, data = predictions_list$`Quercus robur`))
+predictions_list$`Sorbus aucuparia`$resid <- resid(rlm(mean ~ cover, data = predictions_list$`Sorbus aucuparia`))
 
 
 # Plot residuals ####
@@ -262,7 +262,7 @@ breaks <- c(-0.8 ,-0.6, -0.4, -0.2, 0.2, 0.4, 0.6, 0.8)
 p_list <- list()
 for(i in 1:length(sp_to_plot)){
   tmpdf <- predictions_list[[sp_to_plot[i]]]
-  tmpdf <- tmpdf %>% select(resid, geometry)
+  tmpdf <- tmpdf %>% dplyr::select(resid, geometry)
   p_temp <- ggplot() +
     gg(tmpdf, geom = "tile") +
     geom_sf(data = GB_bound, fill = NA, lwd = 0.8, col = "black") +
@@ -283,7 +283,7 @@ names(p_list) <- sp_to_plot
 
 # Get legend ####
 tmpdf <- predictions_list$`Fraxinus excelsior`
-tmpdf <- tmpdf %>% select(resid, geometry)
+tmpdf <- tmpdf %>% dplyr::select(resid, geometry)
 p_temp <- ggplot() +
   gg(tmpdf, geom = "tile") +
   geom_sf(data = GB_bound, fill = NA, lwd = 0.8, col = "black") +
@@ -306,7 +306,7 @@ p_list[[10]] <- resid_legend
 grid1 <- plot_grid(plotlist = p_list[c(1,2,3,4,8,9,5,6,7,10)], nrow = 2, labels = c("A","B","C","D","E","F","G","H","I",""))
 
 setwd("C:/temp/pests_analysis/figures_revisions")
-ggsave2(filename = "intensity_vs_abundance_NFES.tiff",
+ggsave2(filename = "intensity_vs_cover_NFES.tiff",
         plot = grid1,
         bg = "white",
         dpi = 600,
