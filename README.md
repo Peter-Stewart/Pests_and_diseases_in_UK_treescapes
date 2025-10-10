@@ -11,4 +11,5 @@ Code to reproduce the analyses in the manuscript _Patterns and drivers of pest a
 - **Predictions_analysis.R**: Fit ISDMs and produce spatial predictions of pest and disease intensity.
 - **Process_to_1km.R**: Produce spatial covariate layers at 1km resolution.
 - **THDAS_format.R**: Clean and format the THDAS dataset and save as Rdata file.
-- **WAIC_calculation.R**: Fit glms using random subsets of the covariates, and store the WAIC values for each model. 
+- **WAIC_calculation.R**: Fit glms using random subsets of the covariates, and store the WAIC values for each model.
+- **intensity_vs_cover.R**: Compare predicted pest and disease intensity with host percent cover from forest subcompartment data
